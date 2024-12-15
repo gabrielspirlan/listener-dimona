@@ -1,10 +1,15 @@
 {
     "version": 2,
+    "builds": [
+        {
+            "src": "./listener-dimona.js",
+            "use": "@vercel/node"
+        }
+    ],
     "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/listener-dimona.js"
-      }
+        {
+            "src": "/(.*)",
+            "dest": "/listener-dimona.js"
+        }
     ]
-  }
-  
+}
