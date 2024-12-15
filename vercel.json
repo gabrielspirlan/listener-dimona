@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "/",
-            "use": "@vercel/node"
+            "src": "./listener-dimona.js",
+            "use": "@now/node"
         }
     ],
     "routes": [
         {
-            "src": "(.*)",
-            "dest": "listener-dimona.js"
+            "src": "/(.*)",
+            "dest": "./listener-dimona.js"
         }
     ]
 }
