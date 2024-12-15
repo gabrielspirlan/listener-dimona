@@ -23,9 +23,9 @@ async function updateOrder(data) {
         const order_id = data.seller_id;
         const tracking_url = data.tracking_url.replace("\/", "/")
         try {
-            await apiNuvem.put(`/orders/${order_id}`, {
-                shipping_tracking_number: tracking_url,
-                shipping_status: "fulfilled"
+            await apiNuvem.post(`/orders/${order_id}/fulfill`, {
+                shipping_tracking_url: tracking_url,
+                shipping_tracking_number: tracking_url
             })
             return "Updated";
         } catch (error) {
@@ -38,7 +38,6 @@ async function updateOrder(data) {
 listener.post('/orders', async (req, res) => {
     console.log("New order to update");
     const json = req.body;
-    console.log(json)
     const hasOrderBeenUpdated = await updateOrder(json);
     if (hasOrderBeenUpdated == "Updated") {
         console.log(`Order: ${json.seller_id}, updated successfully`)
