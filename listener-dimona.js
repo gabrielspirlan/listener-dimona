@@ -47,6 +47,11 @@ listener.post('/orders', async (req, res) => {
     }
 })
 
+listener.get('/', (req, res) => {
+    console.log("API is running!")
+    res.status("API is running!")
+})
+
 listener.use(cors());
 
 listener.use(express.json());
