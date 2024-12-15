@@ -37,19 +37,19 @@ listener.post('/orders', async (req, res) => {
     const hasOrderBeenUpdated = await updateOrder(data);
     if (hasOrderBeenUpdated == "Updated") {
         console.log(`Order: ${data.seller_id}, updated successfully`)
-        res.status(200).send(`Order: ${data.seller_id}, updated successfully`)
+        res.status(200).send(`Order: ${data.seller_id}, updated successfully`).end()
     } else if (hasOrderBeenUpdated == "Not Updated")  {
         console.log(`Order: ${data.seller_id} does not need to be updated`)
-        res.status(204)
+        res.status(204).end()
     } else {
         console.error(hasOrderBeenUpdated);
-        res.status(500).send(hasOrderBeenUpdated)
+        res.status(500).send(hasOrderBeenUpdated).end()
     }
 })
 
 listener.get('/', (req, res) => {
     console.log("API is running!")
-    res.status("API is running!")
+    res.status("API is running!").end()
 })
 
 listener.use(cors());
