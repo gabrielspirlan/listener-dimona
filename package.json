@@ -6,6 +6,9 @@
     "express": "^4.21.2"
   },
   "scripts": {
-    "start": "/listener-dimona.js"
+    "start": "node listener-dimona.js"
+  },
+  "engines": {
+    "node": ">=16.x"
   }
 }
