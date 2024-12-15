@@ -3,7 +3,7 @@
 API desenvolvida utilizando o padrão Observer e o Webhook da Dimona para atualizar automaticamente as vendas na NuvemShop com os links de rastreamento dos pedidos.
 
 ## Visão Geral
-Esta API resolve um problema comum enfrentado por lojistas que utilizam a Dimona como fornecedora de *print-on-demand*. Atualmente, a integração da NuvemShop com a Dimona, via DropSimples, permite apenas a importação de pedidos gerados na NuvemShop para a Dimona. No entanto, as atualizações de status e links de rastreamento não são enviadas automaticamente da Dimona para a NuvemShop. Este processo acaba exigindo que o lojista faça essas atualizações manualmente, resultando em um trabalho adicional.
+Esta API resolve um problema comum enfrentado por lojistas que utilizam a Dimona como fornecedora de *print-on-demand*. Atualmente, a integração da NuvemShop com a Dimona, via DropSimples, permite apenas a importação de pedidos gerados na NuvemShop para a Dimona. No entanto, as atualizações de status e links de rastreamento não são enviados automaticamente da Dimona para a NuvemShop. Este processo acaba exigindo que o lojista faça essas atualizações manualmente, resultando em um trabalho adicional.
 
 A API Listener Dimona automatiza este processo, integrando as duas plataformas e garantindo que os links de rastreamento sejam atualizados automaticamente na NuvemShop sempre que um pedido for enviado pela Dimona.
 
@@ -69,31 +69,22 @@ cd listener-dimona
 
 ### Passo 3: Instalar Dependências
 
-Instale as dependências do projeto utilizando o **npm** ou **yarn**:
+Instale as dependências do projeto utilizando o **npm**:
 
 ```bash
 npm install
-# ou
-yarn install
 ```
 
-### Passo 4: Iniciar o Servidor
+### Passo 4: Configurar e Hospedar na Vercel
 
-Inicie o servidor localmente:
+A API Listener Dimona está pronta para ser hospedada diretamente na [Vercel](https://vercel.com/), que oferece uma infraestrutura simples e eficiente para APIs como esta. Siga os passos abaixo:
 
-```bash
-npm start
-```
+1. Acesse o painel da [Vercel](https://vercel.com/).
+2. Crie um novo projeto e conecte o repositório clonado.
+3. Configure as variáveis de ambiente na aba **Settings > Environment Variables**, utilizando os valores definidos no arquivo `.env`.
+4. A Vercel irá automaticamente instalar as dependências e implantar a API.
 
-O servidor estará rodando na porta especificada no arquivo `.env`.
-
----
-
-## Hospedagem
-Para que o Listener Dimona esteja sempre ativo e acessível, recomenda-se hospedar a API em uma plataforma como [Railway](https://railway.app/):
-
-1. Configure o projeto no Railway seguindo as instruções da plataforma.
-2. A URL gerada pelo Railway deve ser configurada como o link do Webhook na Dimona.
+A URL gerada pela Vercel deve ser configurada como o link do Webhook na Dimona.
 
 ---
 
@@ -135,4 +126,3 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar
 
 ## Licença
 Este projeto é licenciado sob a [MIT License](https://opensource.org/licenses/MIT).
-
