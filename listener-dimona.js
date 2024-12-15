@@ -4,6 +4,10 @@ const cors = require('cors');
 const express = require('express')
 const axios = require('axios');
 const listener = express();
+
+listener.use(express.json());
+listener.use(cors());
+
 const PORT = process.env.PORT;
 
 const apiNuvem = axios.create({
@@ -33,13 +37,14 @@ async function updateOrder(data) {
 
 listener.post('/orders', async (req, res) => {
     console.log("New order to update");
-    const data = req.body;
-    const hasOrderBeenUpdated = await updateOrder(data);
+    const json = req.body;
+    console.log(json)
+    const hasOrderBeenUpdated = await updateOrder(json);
     if (hasOrderBeenUpdated == "Updated") {
-        console.log(`Order: ${data.seller_id}, updated successfully`)
-        res.status(200).send(`Order: ${data.seller_id}, updated successfully`).end()
+        console.log(`Order: ${json.seller_id}, updated successfully`)
+        res.status(200).send(`Order: ${json.seller_id}, updated successfully`).end()
     } else if (hasOrderBeenUpdated == "Not Updated")  {
-        console.log(`Order: ${data.seller_id} does not need to be updated`)
+        console.log(`Order: ${json.seller_id} does not need to be updated`)
         res.status(204).end()
     } else {
         console.error(hasOrderBeenUpdated);
@@ -52,9 +57,6 @@ listener.get('/', (req, res) => {
     res.send("API is running!").end()
 })
 
-listener.use(cors());
-
-listener.use(express.json());
 
 listener.listen(PORT, () => {
     console.log("Listener Dimona Iniciado. \n Rodando na porta:" + PORT)
