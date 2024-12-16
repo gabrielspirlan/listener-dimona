@@ -21,11 +21,12 @@ const apiNuvem = axios.create({
 async function updateOrder(data) {
     if (data.name == "Enviado" || data.name == "Aguardando coleta pela transportadora") {
         const order_id = data.seller_id;
+        const tracking_number = data.dimona_id;
         const tracking_url = data.tracking_url.replace("\/", "/")
         try {
             await apiNuvem.post(`/orders/${order_id}/fulfill`, {
                 shipping_tracking_url: tracking_url,
-                shipping_tracking_number: tracking_url
+                shipping_tracking_number: tracking_number
             })
             return "Updated";
         } catch (error) {
