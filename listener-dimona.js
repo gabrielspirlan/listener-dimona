@@ -19,7 +19,7 @@ const apiNuvem = axios.create({
 })
 
 async function updateOrder(data) {
-    if (data.name == "Enviado") {
+    if (data.name == "Enviado" || data.name == "Aguardando coleta pela transportadora") {
         const order_id = data.seller_id;
         const tracking_url = data.tracking_url.replace("\/", "/")
         try {
